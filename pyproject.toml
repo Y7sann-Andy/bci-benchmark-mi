@@ -1,0 +1,12 @@
+[project]
+name = "bci-benchmark-mi"
+version = "0.1.0"
+description = "Robust MI decoding under deployment constraints — channel reduction + cross-session generalization on BCICIV 2a"
+requires-python = ">=3.10"
+
+[tool.setuptools]
+packages = ["data", "evaluation", "methods", "preprocessing", "experiments"]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
