@@ -54,9 +54,9 @@ def sig(p: float) -> str:
 
 
 # ---- load both datasets ----
-b = load("exp_baseline_v2.csv")
+b = load("exp_2a_baseline.csv")
 a_cross = b[b.protocol == "cross-session"].pivot_table(index="subject", columns="method", values="score")
-acr = load("exp_channel_reduction.csv")
+acr = load("exp_2a_channel_reduction.csv")
 a_K = sorted(acr.n_channels.unique(), reverse=True)
 a_win = {k: acr[acr.n_channels == k].pivot_table(index="subject", columns="method", values="score") for k in a_K}
 

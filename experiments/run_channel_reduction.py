@@ -10,7 +10,7 @@ follows standard sensorimotor topography (motor strip + immediately
 surrounding electrodes), giving a deployable hardware recommendation
 that maps directly to consumer MI headsets.
 
-Writes to results/exp_channel_reduction.csv. Idempotent per the same
+Writes to results/exp_2a_channel_reduction.csv. Idempotent per the same
 pattern as run_riemannian.py and run_cross_session.py.
 
 WARNING: EEGNet in this sweep takes ~3-6h total across all subjects
@@ -85,7 +85,7 @@ METHODS: dict[str, Callable[[], object]] = {
 # Smoke-test default — fast shallow methods only.
 DEFAULT_METHODS = ["CSP+LDA", "MDM", "TS-LR"]
 
-CSV_PATH = Path("results/exp_channel_reduction.csv")
+CSV_PATH = Path("results/exp_2a_channel_reduction.csv")
 FIELDNAMES = ["method", "subject", "n_channels", "score"]
 
 

@@ -1,7 +1,7 @@
 """Run the Riemannian MDM ablation on all 9 BCICIV-2a subjects.
 
 Three metrics (riemann / logeuclid / euclid) x 9 subjects, within-session
-5-fold CV. Reproduces the MDM block of results/exp_baseline_v2.csv.
+5-fold CV. Reproduces the MDM block of results/exp_2a_baseline.csv.
 
 Idempotent: re-reads the CSV, drops any existing MDM* rows, and writes back
 the non-MDM rows plus a fresh MDM block. Re-running never duplicates rows.
@@ -17,7 +17,7 @@ from evaluation.crossval import cross_validate_within_session
 from methods.riemannian import RiemannianMDMClassifier
 
 VARIANTS = [("MDM", "riemann"), ("MDM-logeuclid", "logeuclid"), ("MDM-euclid", "euclid")]
-CSV_PATH = Path("results/exp_baseline_v2.csv")
+CSV_PATH = Path("results/exp_2a_baseline.csv")
 FIELDNAMES = ["method", "subject", "protocol", "score"]
 PROTOCOL = "within-CV"
 

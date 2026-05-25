@@ -1,7 +1,7 @@
 """Run the TS+LR ablation on all 9 BCICIV-2a subjects.
 
 Two metrics (riemann / logeuclid) x 9 subjects, within-session 5-fold CV.
-Appends TS-LR* rows to results/exp_baseline_v2.csv.
+Appends TS-LR* rows to results/exp_2a_baseline.csv.
 
 Idempotent: re-reads the CSV, drops any existing TS-LR* rows, and writes
 back the non-TS-LR rows plus a fresh TS-LR block. Re-running never
@@ -17,7 +17,7 @@ from evaluation.crossval import cross_validate_within_session
 from methods.tangent_lr import TangentSpaceLRClassifier
 
 VARIANTS = [("TS-LR", "riemann"), ("TS-LR-logeuclid", "logeuclid")]
-CSV_PATH = Path("results/exp_baseline_v2.csv")
+CSV_PATH = Path("results/exp_2a_baseline.csv")
 FIELDNAMES = ["method", "subject", "protocol", "score"]
 PROTOCOL = "within-CV"
 

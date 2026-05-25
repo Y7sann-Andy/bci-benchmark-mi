@@ -22,9 +22,9 @@ import pandas as pd
 from scipy import stats
 
 
-CR_CSV = Path("results/exp_channel_reduction.csv")
-BASE_CSV = Path("results/exp_baseline_v2.csv")
-PRE_ALIGN_CR = Path("/tmp/exp_channel_reduction.before_align.csv")
+CR_CSV = Path("results/exp_2a_channel_reduction.csv")
+BASE_CSV = Path("results/exp_2a_baseline.csv")
+PRE_ALIGN_CR = Path("/tmp/exp_2a_channel_reduction.before_align.csv")
 DEVICE_MPS_CSV = Path("/tmp/eegnet_mps_compare.csv")
 
 

@@ -33,7 +33,7 @@ Both protocols run on both datasets; degradation (within-session vs cross-sessio
 
 ## Results
 
-**[`notebooks/02_results_2a_vs_lee2019.ipynb`](notebooks/02_results_2a_vs_lee2019.ipynb)**: full results with figures (channel reduction, cross-session, degradation, RPA recovery, cross-dataset comparison).
+**[`notebooks/results_2a_vs_lee2019.ipynb`](notebooks/results_2a_vs_lee2019.ipynb)**: full results with figures (channel reduction, cross-session, degradation, RPA recovery, cross-dataset comparison).
 
 Observations:
 
@@ -55,7 +55,7 @@ preprocessing/     shared preprocessing pipeline (n_channels parameterized)
 methods/           one file per method, uniform interface
 evaluation/        crossval + cross-session evaluation utilities
 experiments/       experiment runners (one per research question)
-notebooks/         exploration + results notebooks
+notebooks/         results notebook
 results/           CSV outputs from experiment runners
 data/              raw + cached data (gitignored)
 ```

@@ -1,7 +1,7 @@
 """Cross-session evaluation for baseline methods on BCICIV-2a.
 
 Train on session T, predict on session E. One score per (subject, method).
-Writes to results/exp_baseline_v2.csv with protocol='cross-session'.
+Writes to results/exp_2a_baseline.csv with protocol='cross-session'.
 
 Idempotent: re-reads CSV, drops existing cross-session rows for the
 methods this invocation actually runs, writes back non-affected rows
@@ -35,7 +35,7 @@ from methods.tangent_lr import TangentSpaceLRClassifier
 from preprocessing import normalize_per_session
 
 # All available methods, label -> factory. Labels must match existing
-# within-CV rows in exp_baseline_v2.csv so cross-protocol comparisons
+# within-CV rows in exp_2a_baseline.csv so cross-protocol comparisons
 # join cleanly on the `method` column.
 METHODS: dict[str, Callable[[], object]] = {
     "CSP+LDA": lambda: CSPLDAClassifier(),
@@ -48,7 +48,7 @@ METHODS: dict[str, Callable[[], object]] = {
 # Smoke-test default — fast shallow methods only.
 DEFAULT_METHODS = ["CSP+LDA", "MDM", "TS-LR"]
 
-CSV_PATH = Path("results/exp_baseline_v2.csv")
+CSV_PATH = Path("results/exp_2a_baseline.csv")
 FIELDNAMES = ["method", "subject", "protocol", "score"]
 PROTOCOL = "cross-session"
 
