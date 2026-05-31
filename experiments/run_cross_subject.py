@@ -95,6 +95,9 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--methods", nargs="+", default=None)
     p.add_argument("--epochs", type=int, default=None,
                    help="override EEGNet n_epochs (cap cost on lee2019; classical ignore it)")
+    p.add_argument("--out", default=None,
+                   help="output CSV filename under results/ (default exp_<ds>_loso_extended.csv); "
+                        "use a separate name for provisional/trial runs to keep the canonical file clean")
     return p.parse_args()
 
 
@@ -104,7 +107,7 @@ def main() -> None:
     subjects, load_subject_session = _load_dataset(args.dataset)
     names = args.methods or DEFAULT_METHODS[args.dataset]
     methods = make_methods(names, args.epochs, device)
-    out_csv = REPO / "results" / f"exp_{args.dataset}_loso_extended.csv"
+    out_csv = REPO / "results" / (args.out if args.out else f"exp_{args.dataset}_loso_extended.csv")
     out_csv.parent.mkdir(parents=True, exist_ok=True)
     print(f"Cross-subject LOSO | {args.dataset} | {len(subjects)} subj | {names} "
           f"| device={device} | epochs={args.epochs} | -> {out_csv}", flush=True)

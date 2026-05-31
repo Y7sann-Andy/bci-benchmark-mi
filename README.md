@@ -40,7 +40,7 @@ Observations:
 - TS-LR (Riemannian tangent space) ranks first on both datasets, within- and cross-session. Under channel reduction it is also top at most channel counts; the exception is 2a at K=4, where the methods are not separable (Friedman p=0.14).
 - EEGNet is competitive on 2a (4-class) but ranks last on Lee2019. With ~100 calibration trials/session, the data-hungry CNN trains less effectively than the data-efficient classical and Riemannian methods.
 - RPA recovers ~70% of the cross-session drop (TS-LR retention 91.5% to 97.4%): p=2.5e-5 at n=54, only a trend at n=9 (p=0.055).
-- Edge-deployment check (`experiments/run_onnx_latency.py`): the EEGNet ONNX export runs a single 2 s window in ~0.16 ms (3.6x faster than PyTorch eager; 2,548 params, 13 KB), about 1500x under a 250 ms online sliding-window budget. The real-time bottleneck is the front-end (causal filtering / covariance), not the network.
+- Edge-deployment check (`experiments/run_onnx_deploy_check.py`): the EEGNet ONNX export runs a single 2 s window in ~0.17 ms (~3.5x faster than PyTorch eager, 3.4-3.6x across runs; 2,548 params, 13.6 KB), about 1500x under a 250 ms online sliding-window budget. On 9 trained subject models over 2,592 real held-out windows the export holds 100% label agreement (worst max|delta logit| 1.14e-5). The real-time bottleneck is the front-end (causal filtering / covariance), not the network.
 
 Stats: Friedman + Wilcoxon (Holm-corrected), Cohen's dz effect sizes, κ-normalization for the cross-paradigm comparison. All numbers are generated from `results/*.csv` (see `experiments/_make_capstone_comparison.py`), never hand-typed.
 

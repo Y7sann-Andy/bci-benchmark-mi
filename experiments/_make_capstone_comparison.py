@@ -250,8 +250,9 @@ w("## Highlights — what's interesting, and what changes across datasets")
 w()
 w("1. **TS-LR (Riemannian tangent space) is the most robust method** — rank 1 on within & "
   "cross-session (2a & Lee2019), beating all base methods cross-session on Lee2019 even after Holm "
-  "correction. On the harder cross-subject LOSO, base TS-LR leads on Lee2019 but ties CSP+LDA on 2a; "
-  "RPA restores TS-LR to best on both (Part 6). (Do NOT claim 'rank 1 on every protocol' now LOSO is in.)")
+  "correction. On the harder cross-subject LOSO, base TS-LR no longer leads — EEGNet edges it on "
+  "Lee2019 (0.677 vs 0.662) and CSP/EEGNet/TS-LR tie on 2a — but RPA restores TS-LR to best on both "
+  "(Part 6). (Do NOT claim 'rank 1 on every protocol' now LOSO is in.)")
 w(f"2. **RPA is the cleanest power story.** Same-magnitude effect both datasets (dz≈{dz2a:.2f} vs "
   f"{dzl:.2f}), but p={p2a:.3f} at n=9 (a near-miss you could NOT claim) → p={pl:.1e} at n=54 "
   "(ironclad). Your hand-authored, unsupervised method went from 'trend' to 'proven' purely by "
@@ -273,6 +274,16 @@ w(f"6. **RPA also recovers the cross-subject (new-user) drop** — significant o
   f"larger, so re-centering has more to correct), Lee2019 {gl:+.3f} (dz={gdzl:.2f}, p={gpl:.2e}). "
   f"RPA makes TS-LR the best method cross-subject on both. Honest caveat: on Lee2019 RPA helps "
   f"{ghl}/{gnl}, hurts {gxl} (heterogeneous population, negative transfer).")
+if "EEGNet" in a_loso.columns and "EEGNet" in l_loso.columns:
+    a_eeg, l_eeg = a_loso["EEGNet"].mean(), l_loso["EEGNet"].mean()
+    w(f"7. **EEGNet cross-subject: it's training *subjects*, not trials.** LOSO pools the most "
+      f"training trials of any protocol, yet on 2a ({a_loso.shape[0]-1} training subjects) EEGNet "
+      f"({a_eeg:.3f}) only ties CSP+LDA and TS-LR (all ≈0.45, cross-subject gaps n.s. at n=9, and the "
+      "rank flips with the training seed) — more pooled trials buy it nothing here. On Lee2019 "
+      f"({l_loso.shape[0]-1} training subjects) the same net is the best base method ({l_eeg:.3f}, "
+      "ahead of TS-LR/CSP/MDM). Cross-subject the binding axis is subject DIVERSITY, not trial count: "
+      "~8 subjects too few to learn subject-invariant features, ~53 suffices. Consistent with #4 "
+      "(deep nets reward data volume). TS-LR-RPA still leads both overall (Part 6).")
 w()
 w("## Replication scorecard (2a finding → Lee2019 verdict)")
 w("| 2a finding | Lee2019 (n=54) | verdict |")
